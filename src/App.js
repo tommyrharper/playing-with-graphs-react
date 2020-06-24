@@ -13,12 +13,19 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData:{}
+      chartData:{
+        labels: [2020, 2021, 2022, 2023, 2024, 2025],
+        datasets:[
+          {
+            label:'Money in £',
+            data:[10000,11000,12100.000000000002,13310.000000000004,14641.000000000005,16105.100000000008],
+            backgroundColor:[
+              'rgba(54, 162, 235, 0.4)'
+            ]
+          }
+        ]
+      }
     };
-  }
-
-  componentDidMount(){
-    this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
   }
 
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
