@@ -65,7 +65,7 @@ class App extends Component {
     }))
   }
 
-  updateAppState = (key, value) => {
+  updateAppStateFromFormComponent = (key, value) => {
     this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
@@ -84,7 +84,7 @@ class App extends Component {
     return (
       <>
       <ReactForm
-        updateAppState={this.updateAppState}
+        updateAppState={this.updateAppStateFromFormComponent}
       />
       <div className="App">
         <Chart
