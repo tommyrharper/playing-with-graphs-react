@@ -58,7 +58,7 @@ class ReactForm extends React.Component {
           value={this.state.initialInvestment}
           onChange={this.handleInputChange} />
         </label>
-        <input type="submit" value="Submit"/>
+        <input type="submit" value="Save Line"/>
       </form>
     )
   }
