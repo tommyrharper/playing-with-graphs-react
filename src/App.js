@@ -70,10 +70,15 @@ class App extends Component {
     })
   }
 
+  saveLine = () => {
+    alert("hello")
+  }
+
   render(){
     return (
       <>
       <ReactForm
+        saveLine={this.saveLine}
         updateAppState={this.updateAppStateFromFormComponent}
       />
       <div className="App">
