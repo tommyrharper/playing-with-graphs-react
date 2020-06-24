@@ -17,16 +17,41 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+    this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
   }
 
-  generateChartData = (initialInvestment, interestRate, years) => {
+  generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     var i;
     for (i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
+    }
+    this.setState({
+      chartData:{
+        labels: arrayYears,
+        datasets:[
+          {
+            label:'Money in £',
+            data:arrayMoney,
+            backgroundColor:[
+              'rgba(54, 162, 235, 0.4)'
+            ]
+          }
+        ]
+      }
+    })
+  }
+
+  generateNonCompoundChartData = (initialInvestment, interestRate, years) => {
+    let arrayYears = [2020]
+    let arrayMoney = [initialInvestment]
+    let yearlyGrowth = initialInvestment * (interestRate - 1)
+    var i;
+    for (i = 1; i < years + 1; i++) {
+      arrayYears.push(2020+i)
+      arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
     }
     this.setState({
       chartData:{
@@ -51,10 +76,12 @@ class App extends Component {
         [key]: value
       }
     }))
-    if (key === "years") {
-    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, value)
+    if (value === false) {
+      this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+    } else if (key === "years") {
+    this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, value)
     } else {
-      this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
     }
   }
 
