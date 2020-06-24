@@ -14,7 +14,8 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: initialChartData
+      chartData: initialChartData,
+      savedDataSets: []
     };
   }
 
@@ -71,7 +72,9 @@ class App extends Component {
   }
 
   saveLine = () => {
-    alert("hello")
+    let savedDataSets = this.state.savedDataSets;
+    savedDataSets.push(this.state.chartData.datasets)
+    this.setState({savedDataSets: savedDataSets})
   }
 
   render(){
