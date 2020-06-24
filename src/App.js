@@ -66,7 +66,6 @@ class App extends Component {
       />
       <div className="App">
         <Chart
-          legendPosition='bottom'
           chartData={this.state.chartData}
         />
       </div>
