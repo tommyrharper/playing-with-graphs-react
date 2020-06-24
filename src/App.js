@@ -16,16 +16,6 @@ class App extends Component {
     };
   }
 
-  addYear = () => {
-    this.setState(prevState => ({
-      userData:{
-        ...prevState.userData,
-        years: this.state.userData.years + 1
-      }
-    }))
-    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years + 1)
-  }
-
   componentDidMount(){
     this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
   }
@@ -75,8 +65,6 @@ class App extends Component {
         updateAppState={this.updateAppState}
       />
       <div className="App">
-        <p> Years: {this.state.userData.years}</p>
-        <button onClick={this.addYear}>Add 1 year</button>
         <Chart
           legendPosition='bottom'
           chartData={this.state.chartData}
