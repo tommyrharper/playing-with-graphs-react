@@ -60,20 +60,18 @@ class App extends Component {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
     }
-    this.setState({
+
+    this.setState(prevState => ({
       chartData:{
         labels: arrayYears,
         datasets:[
-          {
-            label:'Money in £',
-            data:arrayMoney,
-            backgroundColor:[
-              'rgba(54, 162, 235, 0.4)'
-            ]
-          }
+            {
+              ...prevState.chartData.datasets[0],
+              data: arrayMoney
+            }
         ]
       }
-    })
+    }))
   }
 
   updateAppState = (key, value) => {
