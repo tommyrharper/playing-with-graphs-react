@@ -25,7 +25,7 @@ class ReactForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Form was submitted, Years:' + this.state.years)
+    this.props.saveLine()
     event.preventDefault();
   }
 
