@@ -6,12 +6,17 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
+      userData:{
+        initialInvestment: 10_000,
+        interestRate: 1.1,
+        years: 10
+      },
       chartData:{}
     };
   }
 
   componentWillMount(){
-    this.generateChartData(10_000, 1.1, 10)
+    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
   }
 
   generateChartData(initialInvestment, interestRate, years){
