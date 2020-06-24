@@ -37,7 +37,17 @@ class Chart extends Component {
       <div className="cart">
         <Bar
           data={this.state.chartData}
-          options={{}}
+          options={{
+            title:{
+              display:true,
+              text:'Largest Cities in Massachusetts',
+              fontSize:25
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
           />
       </div>
     )
