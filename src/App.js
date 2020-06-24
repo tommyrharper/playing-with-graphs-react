@@ -21,7 +21,7 @@ class App extends Component {
         labels: [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
         datasets:[
           {
-            label:'Population',
+            label:'Money in £',
             data:[
               10000,
               11000,
