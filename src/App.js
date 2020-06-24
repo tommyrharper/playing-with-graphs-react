@@ -54,16 +54,32 @@ class App extends Component {
     })
   }
 
+  updateAppState = (key, value) => {
+    this.setState(prevState => ({
+      userData:{
+        ...prevState.userData,
+        [key]: value
+      }
+    }))
+    if (key === "years") {
+    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, value)
+    } else {
+      this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+    }
+  }
+
   render(){
     return (
       <>
-      <ReactForm/>
+      <ReactForm
+        updateAppState={this.updateAppState}
+      />
       <div className="App">
         <p> Years: {this.state.userData.years}</p>
         <button onClick={this.addYear}>Add 1 year</button>
         <Chart
-        legendPosition='bottom'
-        chartData={this.state.chartData}
+          legendPosition='bottom'
+          chartData={this.state.chartData}
         />
       </div>
       </>
