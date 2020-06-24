@@ -37,9 +37,7 @@ class Chart extends Component {
       <div className="cart">
         <Bar
           data={this.state.chartData}
-          options={{
-            maintainAspectRatio: false
-          }}
+          options={{}}
           />
       </div>
     )
