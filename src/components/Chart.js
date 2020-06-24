@@ -32,6 +32,13 @@ class Chart extends Component {
       }
     }
   }
+
+  static defaultProps = {
+    displayTitle:true,
+    displayLegend:true,
+    legendPosition:'right'
+  }
+
   render(){
     return(
       <div className="cart">
@@ -39,13 +46,13 @@ class Chart extends Component {
           data={this.state.chartData}
           options={{
             title:{
-              display:true,
+              display:this.props.displayTitle,
               text:'Largest Cities in Massachusetts',
               fontSize:25
             },
             legend:{
-              display:true,
-              position:'right'
+              display:this.props.displayTitle,
+              position:this.props.legendPosition
             }
           }}
           />
