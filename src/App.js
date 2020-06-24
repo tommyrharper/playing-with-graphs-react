@@ -3,6 +3,19 @@ import './App.css';
 import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
 
+let initialChartData = {
+  labels: [2020, 2021, 2022, 2023, 2024, 2025],
+  datasets:[
+    {
+      label:'Money in £',
+      data:[10000, 11000, 12100, 13310, 14641, 16105],
+      backgroundColor:[
+        'rgba(54, 162, 235, 0.4)'
+      ]
+    }
+  ]
+}
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -13,18 +26,7 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData:{
-        labels: [2020, 2021, 2022, 2023, 2024, 2025],
-        datasets:[
-          {
-            label:'Money in £',
-            data:[10000, 11000, 12100, 13310, 14641, 16105],
-            backgroundColor:[
-              'rgba(54, 162, 235, 0.4)'
-            ]
-          }
-        ]
-      }
+      chartData: initialChartData
     };
   }
 
