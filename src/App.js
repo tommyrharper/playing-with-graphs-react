@@ -10,7 +10,8 @@ class App extends Component {
       userData:{
         initialInvestment: 10_000,
         interestRate: 1.1,
-        years: 5
+        years: 5,
+        compound: true
       },
       chartData:{}
     };
@@ -76,7 +77,11 @@ class App extends Component {
         [key]: value
       }
     }), () => {
+      if (this.state.userData.compound === true) {
       this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      } else {
+        this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      }
     })
   }
 
