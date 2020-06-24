@@ -18,21 +18,6 @@ class Chart extends Component {
   render(){
     return(
       <div className="cart">
-        <Bar
-          data={this.state.chartData}
-          options={{
-            title:{
-              display:this.props.displayTitle,
-              text:'Largest Cities in Massachusetts',
-              fontSize:25
-            },
-            legend:{
-              display:this.props.displayTitle,
-              position:this.props.legendPosition
-            }
-          }}
-        />
-
         <Line
           data={this.state.chartData}
           options={{
