@@ -36,7 +36,7 @@ class App extends Component {
             label:'Money in £',
             data:arrayMoney,
             backgroundColor:[
-              'rgba(54, 162, 235, 0.6)'
+              'rgba(54, 162, 235, 0.4)'
             ]
           }
         ]
