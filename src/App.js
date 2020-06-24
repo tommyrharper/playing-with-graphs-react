@@ -3,23 +3,34 @@ import './App.css';
 import Chart from './components/Chart.js'
 
 class App extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       userData:{
         initialInvestment: 10_000,
         interestRate: 1.1,
-        years: 10
+        years: 5
       },
       chartData:{}
     };
+    this.addYear = this.addYear.bind(this) 
   }
 
-  componentWillMount(){
+  addYear = () => {
+    this.setState(prevState => ({
+      userData:{
+        ...prevState.userData,
+        years: this.state.userData.years + 1
+      }
+    }))
+    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years + 1)
+  }
+
+  componentDidMount(){
     this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
   }
 
-  generateChartData(initialInvestment, interestRate, years){
+  generateChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     var i;
@@ -45,12 +56,16 @@ class App extends Component {
 
   render(){
     return (
+      <>
       <div className="App">
+        <p> Years: {this.state.userData.years}</p>
+        <button onClick={this.addYear}>Add 1 year</button>
         <Chart
         legendPosition='bottom'
         chartData={this.state.chartData}
         />
       </div>
+      </>
     );
   }
 }
