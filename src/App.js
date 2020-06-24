@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Chart from './components/Chart.js'
+import ReactForm from './components/Form'
 
 class App extends Component {
   constructor(props){
@@ -56,6 +57,7 @@ class App extends Component {
   render(){
     return (
       <>
+      <ReactForm/>
       <div className="App">
         <p> Years: {this.state.userData.years}</p>
         <button onClick={this.addYear}>Add 1 year</button>
