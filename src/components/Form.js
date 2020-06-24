@@ -5,7 +5,7 @@ class ReactForm extends React.Component {
     super(props);
     this.state = {
       isGoing: true,
-      numberOfYears: 5,
+      years: 5,
       initialInvestment: 10000
     }
 
@@ -21,10 +21,11 @@ class ReactForm extends React.Component {
     this.setState({
       [key]: value
     });
+    this.props.updateAppState(key, value)
   }
 
   handleSubmit(event) {
-    alert('Form was submitted, Years:' + this.state.numberOfYears)
+    alert('Form was submitted, Years:' + this.state.years)
     event.preventDefault();
   }
 
@@ -43,9 +44,9 @@ class ReactForm extends React.Component {
         <label>
           Number of Years:
           <input
-          name="numberOfYears"
+          name="years"
           type="number"
-          value={this.state.numberOfYears}
+          value={this.state.years}
           onChange={this.handleInputChange} />
         </label>
         <br/>
