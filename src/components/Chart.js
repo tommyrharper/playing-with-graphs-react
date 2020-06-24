@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Doughnut, Bar, Line, Pie} from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 class Chart extends Component {
   constructor(props){
@@ -7,6 +7,10 @@ class Chart extends Component {
     this.state = {
       chartData:props.chartData
     }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return {chartData: props.chartData}
   }
 
   static defaultProps = {
