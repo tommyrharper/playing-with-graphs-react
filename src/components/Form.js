@@ -5,8 +5,8 @@ class ReactForm extends React.Component {
     super(props);
     this.state = {
       isGoing: true,
-      numberOfGuests: 2,
-      name: ''
+      numberOfYears: 5,
+      initialInvestment: 10000
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -15,7 +15,7 @@ class ReactForm extends React.Component {
 
   handleInputChange(event) {
     const target = event.target
-    const value = target.name === 'isGoing' ? target.checked : target.value;
+    const value = target.name === 'isGoing' ? target.checked : parseInt(target.value);
     const key = target.name;
 
     this.setState({
@@ -24,7 +24,7 @@ class ReactForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Form was submitted, guests:' + this.state.numberOfGuests)
+    alert('Form was submitted, Years:' + this.state.numberOfYears)
     event.preventDefault();
   }
 
@@ -41,19 +41,20 @@ class ReactForm extends React.Component {
         </label>
         <br/>
         <label>
-          Number of guests:
+          Number of Years:
           <input
-          name="numberOfGuests"
+          name="numberOfYears"
           type="number"
-          value={this.state.numberOfGuests}
+          value={this.state.numberOfYears}
           onChange={this.handleInputChange} />
         </label>
+        <br/>
         <label>
-          Name:
+          Initial Investment:
           <input
-          name="name"
-          type="text"
-          value={this.state.name}
+          name="initialInvestment"
+          type="number"
+          value={this.state.initialInvestment}
           onChange={this.handleInputChange} />
         </label>
         <input type="submit" value="Submit"/>
