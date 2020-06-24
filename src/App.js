@@ -18,26 +18,25 @@ class App extends Component {
     // Ajax call here if getting information from API for example
     this.setState({
       chartData:{
-        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        labels: [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030],
         datasets:[
           {
             label:'Population',
             data:[
-              617594,
-              181045,
-              153060,
-              106519,
-              105162,
-              95072
+              10000,
+              11000,
+              12100,
+              13310,
+              14641,
+              16105.1,
+              17715.61,
+              19487.171,
+              21435.8881,
+              23579.47691,
+              25937.4246
             ],
             backgroundColor:[
-              'rgba(255, 99, 132, 0.6)',
-              'rgba(54, 162, 235, 0.6)',
-              'rgba(255, 206, 86, 0.6)',
-              'rgba(75, 192, 192, 0.6)',
-              'rgba(153, 102, 255, 0.6)',
-              'rgba(255, 159, 64, 0.6)',
-              'rgba(255, 99, 132, 0.6)'
+              'rgba(54, 162, 235, 0.6)'
             ]
           }
         ]
