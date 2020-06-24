@@ -5,7 +5,9 @@ import Chart from './components/Chart.js'
 function App() {
   return (
     <div className="App">
-      <Chart/>
+      <Chart
+      legendPosition='bottom'
+      />
     </div>
   );
 }
