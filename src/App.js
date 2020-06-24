@@ -2,19 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
-
-let initialChartData = {
-  labels: [2020, 2021, 2022, 2023, 2024, 2025],
-  datasets:[
-    {
-      label:'Money in £',
-      data:[10000, 11000, 12100, 13310, 14641, 16105],
-      backgroundColor:[
-        'rgba(54, 162, 235, 0.4)'
-      ]
-    }
-  ]
-}
+import initialChartData from './components/InitialChartData'
 
 class App extends Component {
   constructor(props){
