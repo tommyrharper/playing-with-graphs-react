@@ -36,19 +36,7 @@ class App extends Component {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
     }
-
-    this.setState(prevState => ({
-      chartData:{
-        labels: arrayYears,
-        datasets:[
-            {
-              ...prevState.chartData.datasets[0],
-              data: arrayMoney
-            }
-        ]
-      }
-    }))
-
+    this.updateChartData(arrayYears, arrayMoney)
   }
 
   generateNonCompoundChartData = (initialInvestment, interestRate, years) => {
@@ -60,14 +48,17 @@ class App extends Component {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
     }
+    this.updateChartData(arrayYears, arrayMoney)
+  }
 
+  updateChartData = (xAxis, yAxis) => {
     this.setState(prevState => ({
       chartData:{
-        labels: arrayYears,
+        labels: xAxis,
         datasets:[
             {
               ...prevState.chartData.datasets[0],
-              data: arrayMoney
+              data: yAxis
             }
         ]
       }
