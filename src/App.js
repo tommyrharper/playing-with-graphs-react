@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
+import initialChartData from './components/InitialChartData'
 
 class App extends Component {
   constructor(props){
@@ -10,17 +11,14 @@ class App extends Component {
       userData:{
         initialInvestment: 10_000,
         interestRate: 1.1,
-        years: 5
+        years: 5,
+        compound: true
       },
-      chartData:{}
+      chartData: initialChartData
     };
   }
 
-  componentDidMount(){
-    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-  }
-
-  generateChartData = (initialInvestment, interestRate, years) => {
+  generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     var i;
@@ -28,45 +26,58 @@ class App extends Component {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
     }
-    this.setState({
-      chartData:{
-        labels: arrayYears,
-        datasets:[
-          {
-            label:'Money in £',
-            data:arrayMoney,
-            backgroundColor:[
-              'rgba(54, 162, 235, 0.6)'
-            ]
-          }
-        ]
-      }
-    })
+    this.updateChartData(arrayYears, arrayMoney)
   }
 
-  updateAppState = (key, value) => {
+  generateNonCompoundChartData = (initialInvestment, interestRate, years) => {
+    let arrayYears = [2020]
+    let arrayMoney = [initialInvestment]
+    let yearlyGrowth = initialInvestment * (interestRate - 1)
+    var i;
+    for (i = 1; i < years + 1; i++) {
+      arrayYears.push(2020+i)
+      arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
+    }
+    this.updateChartData(arrayYears, arrayMoney)
+  }
+
+  updateChartData = (xAxis, yAxis) => {
     this.setState(prevState => ({
+      chartData:{
+        labels: xAxis,
+        datasets:[
+            {
+              ...prevState.chartData.datasets[0],
+              data: yAxis
+            }
+        ]
+      }
+    }))
+  }
+
+  updateAppStateFromFormComponent = (key, value) => {
+    this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
         [key]: value
       }
-    }))
-    if (key === "years") {
-    this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, value)
-    } else {
-      this.generateChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-    }
+    }), () => {
+      if (this.state.userData.compound === true) {
+      this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      } else {
+        this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      }
+    })
   }
 
   render(){
     return (
       <>
       <ReactForm
-        updateAppState={this.updateAppState}
+        updateAppState={this.updateAppStateFromFormComponent}
       />
       <div className="App">
         <Chart
-          legendPosition='bottom'
           chartData={this.state.chartData}
         />
       </div>
