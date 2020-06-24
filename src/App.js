@@ -70,19 +70,14 @@ class App extends Component {
   }
 
   updateAppState = (key, value) => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
         [key]: value
       }
-    }))
-    if (value === false) {
-      this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-    } else if (key === "years") {
-    this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, value)
-    } else {
+    }), () => {
       this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-    }
+    })
   }
 
   render(){
