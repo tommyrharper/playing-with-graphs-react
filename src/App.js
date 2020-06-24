@@ -13,7 +13,6 @@ class App extends Component {
       },
       chartData:{}
     };
-    this.addYear = this.addYear.bind(this) 
   }
 
   addYear = () => {
