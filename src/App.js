@@ -14,8 +14,7 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: initialChartData,
-      savedDataSets: []
+      chartData: initialChartData
     };
   }
 
@@ -72,14 +71,17 @@ class App extends Component {
   }
 
   saveLine = () => {
-    let savedDataSets = this.state.savedDataSets;
-    savedDataSets.push(this.state.chartData.datasets)
-    this.setState({savedDataSets: savedDataSets})
+    alert(this.state.chartData.datasets[0].data)
+  }
+
+  displayAllDataSets = () => {
+    alert("hello")
   }
 
   render(){
     return (
       <>
+      <button onClick={this.displayAllDataSets}>Display all data sets</button>
       <ReactForm
         saveLine={this.saveLine}
         updateAppState={this.updateAppStateFromFormComponent}
