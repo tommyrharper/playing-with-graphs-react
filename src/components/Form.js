@@ -4,7 +4,7 @@ class ReactForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isGoing: true,
+      compound: true,
       years: 5,
       initialInvestment: 10000
     }
@@ -15,7 +15,7 @@ class ReactForm extends React.Component {
 
   handleInputChange(event) {
     const target = event.target
-    const value = target.name === 'isGoing' ? target.checked : parseInt(target.value);
+    const value = target.name === 'compound' ? target.checked : parseInt(target.value);
     const key = target.name;
 
     this.setState({
@@ -33,11 +33,11 @@ class ReactForm extends React.Component {
     return(
       <form onSubmit={this.handleSubmit}>
         <label>
-          Is going:
+          Compound:
           <input 
-          name="isGoing"
+          name="compound"
           type="checkbox" 
-          checked={this.state.isGoing}
+          checked={this.state.compound}
           onChange={this.handleInputChange} />
         </label>
         <br/>
