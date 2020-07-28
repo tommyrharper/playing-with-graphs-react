@@ -93,7 +93,7 @@ class App extends Component {
 
   }
 
-  saveLine = () => {
+  addLine = () => {
       if (this.state.userData.compound === true) {
       this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       } else {
@@ -124,7 +124,7 @@ class App extends Component {
       <>
       <button onClick={this.removeLine}>Remove Line</button>
       <ReactForm
-        saveLine={this.saveLine}
+        addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
       />
       <div className="App">
