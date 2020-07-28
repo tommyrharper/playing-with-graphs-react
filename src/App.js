@@ -84,35 +84,39 @@ class App extends Component {
   }
 
   updateAppStateFromFormComponent = (key, value) => {
-    // this.setState((prevState) => ({
-    //   userData:{
-    //     ...prevState.userData,
-    //     [key]: value
-    //   }
-    // }))
-
 
     let chartdata = JSON.parse(JSON.stringify(initialChartData))
-
+    
     this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
         [key]: value
       },
       chartData: chartdata
-    }), () => {
-      // if (this.state.userData.compound === true) {
-      // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-      // } else {
-      //   this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-      // }
-      ////////
-      this.setState({
-        chartData:chartdata
-      })
-      console.log("updateStatefromApp")
-      console.log(initialChartData)
-    })
+    }))
+
+
+    
+
+    // this.setState((prevState) => ({
+    //   userData:{
+    //     ...prevState.userData,
+    //     [key]: value
+    //   },
+    //   chartData: chartdata
+    // }), () => {
+    //   // if (this.state.userData.compound === true) {
+    //   // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+    //   // } else {
+    //   //   this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+    //   // }
+    //   ////////
+    //   // this.setState({
+    //   //   chartData:chartdata
+    //   // })
+    //   console.log("updateStatefromApp")
+    //   console.log(initialChartData)
+    // })
   }
 
   saveLine = () => {
