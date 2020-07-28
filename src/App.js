@@ -104,7 +104,6 @@ class App extends Component {
   removeLine = () => {
     if (this.state.numberOfLines > 0) {
       initialChartData.datasets.pop()
-    
 
       let data = JSON.parse(JSON.stringify(initialChartData))
 
