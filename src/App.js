@@ -99,7 +99,7 @@ class App extends Component {
         ...prevState.userData,
         [key]: value
       },
-      chartData: {}
+      chartData: chartdata
     }), () => {
       // if (this.state.userData.compound === true) {
       // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
