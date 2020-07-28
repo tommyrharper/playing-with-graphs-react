@@ -6,7 +6,8 @@ class ReactForm extends React.Component {
     this.state = {
       compound: true,
       years: 5,
-      initialInvestment: 10000
+      initialInvestment: 10000,
+      interestRate: 1.1
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -15,7 +16,8 @@ class ReactForm extends React.Component {
 
   handleInputChange(event) {
     const target = event.target
-    const value = target.name === 'compound' ? target.checked : parseInt(target.value);
+    // const value = target.name === 'compound' ? target.checked : parseInt(target.value);
+    const value = target.name === 'compound' ? target.checked : parseFloat(target.value);
     const key = target.name;
 
     this.setState({
@@ -29,6 +31,7 @@ class ReactForm extends React.Component {
     this.props.addLine()
   }
 
+
   render() {
     return(
       <form onSubmit={this.handleSubmit}>
@@ -38,6 +41,16 @@ class ReactForm extends React.Component {
           name="compound"
           type="checkbox" 
           checked={this.state.compound}
+          onChange={this.handleInputChange} />
+        </label>
+        <br/>
+        <label>
+          Interest rate:
+          <input 
+          name="interestRate"
+          type="number" 
+          step="0.01"
+          value={this.state.interestRate}
           onChange={this.handleInputChange} />
         </label>
         <br/>
