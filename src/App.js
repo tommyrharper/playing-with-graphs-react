@@ -14,7 +14,9 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: initialChartData
+      chartData: initialChartData,
+      savedData: [],
+      numberOfLines: 0
     };
   }
 
@@ -71,11 +73,33 @@ class App extends Component {
   }
 
   saveLine = () => {
-    alert(this.state.chartData.datasets[0].data)
+    // alert(this.state.chartData.datasets[this.state.numberOfLines].data)
+    // alert(this.state.chartData.datasets[0].data)
+    // if (this.state.numberOfLines === 0) {
+    //   let savedData = this.state.savedData.slice()
+    //   let chartData = Object.assign({}, this.state.chartData.datasets[0])
+    //   savedData.push(chartData)
+
+    //   this.setState(() => ({
+    //     savedData: savedData,
+    //     numberOfLines: this.state.numberOfLines + 1
+    //   }), () => {
+    //     this.setState({
+    //       savedData: []
+    //     })
+    //   })
+    // }
+    let savedData = this.state.savedData.slice(0)
+    let chartData = Object.assign({}, this.state.chartData.datasets[0])
+    savedData.push(chartData)
+    this.setState({
+      savedData: savedData,
+      numberOfLines: this.state.numberOfLines + 1
+    })
   }
 
   displayAllDataSets = () => {
-    alert("hello")
+    alert(this.state.savedData)
   }
 
   render(){
