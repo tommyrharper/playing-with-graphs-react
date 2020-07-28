@@ -4,6 +4,15 @@ import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
 import initialChartData from './components/InitialChartData'
 
+let colours = {
+  0:'red',
+  1:'blue',
+  2:'orange',
+  3:'green',
+  4:'purple',
+  5:'yellow'
+}
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -23,7 +32,6 @@ class App extends Component {
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
-    // var i;
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
@@ -35,8 +43,7 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let yearlyGrowth = initialInvestment * (interestRate - 1)
-    var i;
-    for (i = 1; i < years + 1; i++) {
+    for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
     }
@@ -45,12 +52,14 @@ class App extends Component {
 
   updateChartData = (xAxis, yAxis) => {
 
+    let lineColour = colours[this.state.numberOfLines % 6]
+    console.log(lineColour)
+
     let savedDataObject = {
       label:'Money in £',
       data: yAxis,
-      backgroundColor:[
-        'rgba(54, 162, 235, 0.4)'
-      ]
+      fill: false,
+      borderColor: lineColour
     }
     
     if (xAxis.length > initialChartData.labels.length) {
