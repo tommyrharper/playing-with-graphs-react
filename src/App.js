@@ -4,6 +4,15 @@ import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
 import initialChartData from './components/InitialChartData'
 
+let colours = {
+  0:'red',
+  1:'blue',
+  2:'orange',
+  3:'green',
+  4:'purple',
+  5:'yellow'
+}
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -14,17 +23,18 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: initialChartData
+      chartData: JSON.parse(JSON.stringify(initialChartData)),
+      savedData: [],
+      numberOfLines: 0
     };
   }
 
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
-    var i;
-    for (i = 1; i < years + 1; i++) {
+    for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
+      arrayMoney.push((arrayMoney[arrayMoney.length - 1]*interestRate).toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
   }
@@ -33,8 +43,7 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let yearlyGrowth = initialInvestment * (interestRate - 1)
-    var i;
-    for (i = 1; i < years + 1; i++) {
+    for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
     }
@@ -42,43 +51,91 @@ class App extends Component {
   }
 
   updateChartData = (xAxis, yAxis) => {
-    this.setState(prevState => ({
-      chartData:{
-        labels: xAxis,
-        datasets:[
-            {
-              ...prevState.chartData.datasets[0],
-              data: yAxis
-            }
-        ]
-      }
-    }))
+    let compound = ''
+    if (this.state.userData.compound === true) {
+      compound = 'Yes'
+    } else {
+      compound = 'No'
+    }
+
+    let finalAmount = yAxis[yAxis.length - 1]
+
+    let lineColour = colours[this.state.numberOfLines % 6]
+    let label = ` Start: £${this.state.userData.initialInvestment}
+    Interest: ${parseInt((this.state.userData.interestRate-1)*100)}%
+    Years: ${this.state.userData.years}
+    Compounded: ${compound}
+    End: £${finalAmount}`
+
+    let savedDataObject = {
+      label:label,
+      data: yAxis,
+      fill: false,
+      borderColor: lineColour
+    }
+    
+    if (xAxis.length > initialChartData.labels.length) {
+      initialChartData.labels = xAxis
+    }
+    initialChartData.datasets.push(savedDataObject)
+
+    let data = JSON.parse(JSON.stringify(initialChartData))
+
+    this.setState((prevState) => ({
+      chartData: {}
+    }), () => {
+      this.setState({
+        chartData: data,
+        numberOfLines: this.state.numberOfLines + 1
+      })
+    })
   }
 
   updateAppStateFromFormComponent = (key, value) => {
+
+    let chartdata = JSON.parse(JSON.stringify(initialChartData))
+
     this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
         [key]: value
-      }
-    }), () => {
+      },
+      chartData: chartdata
+    }))
+
+  }
+
+  addLine = () => {
       if (this.state.userData.compound === true) {
       this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       } else {
         this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       }
-    })
   }
 
-  saveLine = () => {
-    alert("hello")
+  removeLine = () => {
+    if (this.state.numberOfLines > 0) {
+      initialChartData.datasets.pop()
+
+      let data = JSON.parse(JSON.stringify(initialChartData))
+
+      this.setState((prevState) => ({
+        chartData: {}
+      }), () => {
+        this.setState({
+          chartData: data,
+          numberOfLines: this.state.numberOfLines - 1
+        })
+      })
+    }
   }
 
   render(){
     return (
       <>
+      <button onClick={this.removeLine}>Remove Line</button>
       <ReactForm
-        saveLine={this.saveLine}
+        addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
       />
       <div className="App">

@@ -16,12 +16,13 @@ class Chart extends Component {
   static defaultProps = {
     displayTitle:true,
     displayLegend:true,
-    legendPosition:'bottom'
+    legendPosition:'bottom',
+    beginAtZero: false
   }
 
   render(){
     return(
-      <div className="cart">
+      <div className="chart">
         <Line
           data={this.state.chartData}
           options={{
@@ -32,7 +33,14 @@ class Chart extends Component {
             },
             legend:{
               display:this.props.displayTitle,
-              position:this.props.legendPosition
+              position:this.props.legendPosition,
+            },
+            scales:{
+              yAxes: [{
+                ticks: {
+                  beginAtZero: this.props.beginAtZero
+                }
+              }]
             }
           }}
           />
