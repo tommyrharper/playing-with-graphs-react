@@ -101,7 +101,32 @@ class App extends Component {
       }
   }
 
-  displayAllDataSets = () => {
+  removeLine = () => {
+
+    // let lineColour = colours[this.state.numberOfLines % 6]
+    // console.log(lineColour)
+
+    // let savedDataObject = {
+    //   label:'Money in £',
+    //   data: yAxis,
+    //   fill: false,
+    //   borderColor: lineColour
+    // }
+    
+    if (this.state.numberOfLines > 0) {
+      initialChartData.datasets.pop()
+    }
+
+    let data = JSON.parse(JSON.stringify(initialChartData))
+
+    this.setState((prevState) => ({
+      chartData: {}
+    }), () => {
+      this.setState({
+        chartData: data,
+        numberOfLines: this.state.numberOfLines - 1
+      })
+    })
     // var newDataSet = {
     //   label:'Money in £',
     //   data:[5000, 6000, 7000, 8000, 12000, 18000],
@@ -122,7 +147,7 @@ class App extends Component {
   render(){
     return (
       <>
-      <button onClick={this.displayAllDataSets}>Display all data sets</button>
+      <button onClick={this.removeLine}>Remove Line</button>
       <ReactForm
         saveLine={this.saveLine}
         updateAppState={this.updateAppStateFromFormComponent}
