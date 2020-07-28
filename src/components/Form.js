@@ -25,8 +25,8 @@ class ReactForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.saveLine()
     event.preventDefault();
+    this.props.saveLine()
   }
 
   render() {
