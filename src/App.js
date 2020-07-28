@@ -90,12 +90,7 @@ class App extends Component {
   }
 
   displayAllDataSets = () => {
-    // this.setState(prevState => ({
-    //   chartData:{
-    //     ...prevState.chartData,
-    //     datasets:this.state.savedData
-    //   }
-    // }))
+
   }
 
   render(){

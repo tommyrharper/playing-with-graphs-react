@@ -7,7 +7,14 @@ const initialChartData = {
       backgroundColor:[
         'rgba(54, 162, 235, 0.4)'
       ]
-    }
+    },
+    // {
+    //   label:'Money in £',
+    //   data:[5000, 6000, 7000, 8000, 12000, 18000],
+    //   backgroundColor:[
+    //     'rgba(54, 162, 235, 0.4)'
+    //   ]
+    // }
   ]
 }
 
