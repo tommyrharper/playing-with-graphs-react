@@ -26,7 +26,7 @@ class ReactForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.saveLine()
+    this.props.addLine()
   }
 
   render() {
@@ -58,7 +58,7 @@ class ReactForm extends React.Component {
           value={this.state.initialInvestment}
           onChange={this.handleInputChange} />
         </label>
-        <input type="submit" value="Save Line"/>
+        <input type="submit" value="Add Line"/>
       </form>
     )
   }
