@@ -34,7 +34,7 @@ class App extends Component {
     let arrayMoney = [initialInvestment]
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
+      arrayMoney.push((arrayMoney[arrayMoney.length - 1]*interestRate).toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
   }
@@ -51,12 +51,24 @@ class App extends Component {
   }
 
   updateChartData = (xAxis, yAxis) => {
+    let compound = ''
+    if (this.state.userData.compound === true) {
+      compound = 'Yes'
+    } else {
+      compound = 'No'
+    }
+
+    let finalAmount = yAxis[yAxis.length - 1]
 
     let lineColour = colours[this.state.numberOfLines % 6]
-    console.log(lineColour)
+    let label = ` Start: £${this.state.userData.initialInvestment}
+    Interest: ${parseInt((this.state.userData.interestRate-1)*100)}%
+    Years: ${this.state.userData.years}
+    Compounded: ${compound}
+    End: £${finalAmount}`
 
     let savedDataObject = {
-      label:'Money in £',
+      label:label,
       data: yAxis,
       fill: false,
       borderColor: lineColour
