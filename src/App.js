@@ -14,7 +14,7 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: initialChartData,
+      chartData: JSON.parse(JSON.stringify(initialChartData)),
       savedData: [],
       numberOfLines: 0
     };
@@ -73,22 +73,6 @@ class App extends Component {
   }
 
   saveLine = () => {
-    // alert(this.state.chartData.datasets[this.state.numberOfLines].data)
-    // alert(this.state.chartData.datasets[0].data)
-    // if (this.state.numberOfLines === 0) {
-    //   let savedData = this.state.savedData.slice()
-    //   let chartData = Object.assign({}, this.state.chartData.datasets[0])
-    //   savedData.push(chartData)
-
-    //   this.setState(() => ({
-    //     savedData: savedData,
-    //     numberOfLines: this.state.numberOfLines + 1
-    //   }), () => {
-    //     this.setState({
-    //       savedData: []
-    //     })
-    //   })
-    // }
     let savedData = this.state.savedData.slice(0)
     let chartData = Object.assign({}, this.state.chartData.datasets[0])
     savedData.push(chartData)
@@ -99,7 +83,17 @@ class App extends Component {
   }
 
   displayAllDataSets = () => {
-    alert(this.state.savedData)
+    // this.setState(prevState => ({
+    //   chartData:{
+    //     ...prevState.chartData,
+    //     datasets:this.state.savedData
+    //   }
+    // }))
+    alert(initialChartData.datasets[0].data)
+    this.setState({
+      hell: "asfasdf",
+      chartData: initialChartData
+    })
   }
 
   render(){
