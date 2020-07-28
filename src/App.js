@@ -4,6 +4,20 @@ import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
 import initialChartData from './components/InitialChartData'
 
+
+var data = {
+  labels: [2020, 2021, 2022, 2023, 2024, 2025],
+  datasets:[
+    {
+      label:'Money in £',
+      data:[10000, 11000, 12100, 13310, 14641, 16105],
+      backgroundColor:[
+        'rgba(54, 162, 235, 0.4)'
+      ]
+    }
+  ]
+}
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -14,7 +28,8 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      chartData: JSON.parse(JSON.stringify(initialChartData)),
+      // chartData: JSON.parse(JSON.stringify(initialChartData)),
+      chartData: JSON.parse(JSON.stringify(data)),
       savedData: [],
       numberOfLines: 0
     };
@@ -90,6 +105,47 @@ class App extends Component {
   }
 
   displayAllDataSets = () => {
+    // this.setState({
+    //   chartData:{}
+    // })
+    var newDataSet = {
+      label:'Money in £',
+      data:[5000, 6000, 7000, 8000, 12000, 18000],
+      backgroundColor:[
+        'rgba(54, 162, 235, 0.4)'
+      ]
+    }
+/////
+
+    data.datasets.push(newDataSet)
+    console.log(data)
+
+    this.setState((prevState) => ({
+      chartData: {}
+    }), () => {
+      this.setState({
+        chartData:data
+      })
+    })
+
+
+
+
+
+    //////
+
+    // console.log(data)
+    // data.datasets.push(newDataSet)
+    // console.log(data)
+
+    // // this.forceUpdate()
+    // // let datasets = this.state.chartData.datasets
+    // // datasets.push(newDataSet)
+    // // console.log(datasets)
+  
+    // this.setState({
+    //   chartData:data
+    // })
 
   }
 
