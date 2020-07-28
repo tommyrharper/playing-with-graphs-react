@@ -4,20 +4,6 @@ import Chart from './components/Chart.js'
 import ReactForm from './components/Form'
 import initialChartData from './components/InitialChartData'
 
-
-var data = {
-  labels: [2020, 2021, 2022, 2023, 2024, 2025],
-  datasets:[
-    {
-      label:'Money in £',
-      data:[10000, 11000, 12100, 13310, 14641, 16105],
-      backgroundColor:[
-        'rgba(54, 162, 235, 0.4)'
-      ]
-    }
-  ]
-}
-
 class App extends Component {
   constructor(props){
     super(props)
@@ -29,7 +15,6 @@ class App extends Component {
         compound: true
       },
       chartData: JSON.parse(JSON.stringify(initialChartData)),
-      // chartData: JSON.parse(JSON.stringify(data)),
       savedData: [],
       numberOfLines: 0
     };
@@ -59,55 +44,115 @@ class App extends Component {
   }
 
   updateChartData = (xAxis, yAxis) => {
-    this.setState(prevState => ({
-      chartData:{
-        labels: xAxis,
-        datasets:[
-            {
-              ...prevState.chartData.datasets[0],
-              data: yAxis
-            }
-        ]
-      }
-    }))
+
+    let savedDataObject = {
+      label:'Money in £',
+      data:yAxis,
+      backgroundColor:[
+        'rgba(54, 162, 235, 0.4)'
+      ]
+    }
+    
+    initialChartData.labels = xAxis
+    initialChartData.datasets.push(savedDataObject)
+
+    let data = JSON.parse(JSON.stringify(initialChartData))
+
+    console.log("updateChartData")
+    console.log(initialChartData.datasets)
+
+    this.setState((prevState) => ({
+      chartData: {}
+    }), () => {
+      this.setState({
+        chartData:data
+      })
+    })
+
+    ///////
+    // this.setState(prevState => ({
+    //   chartData:{
+    //     labels: xAxis,
+    //     datasets:[
+    //         {
+    //           ...prevState.chartData.datasets[0],
+    //           data: yAxis
+    //         }
+    //     ]
+    //   }
+    // }))
   }
 
   updateAppStateFromFormComponent = (key, value) => {
+    // this.setState((prevState) => ({
+    //   userData:{
+    //     ...prevState.userData,
+    //     [key]: value
+    //   }
+    // }))
+
+
+    let chartdata = JSON.parse(JSON.stringify(initialChartData))
+
     this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
         [key]: value
-      }
+      },
+      // chartData: {}
     }), () => {
+      // if (this.state.userData.compound === true) {
+      // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      // } else {
+      //   this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
+      // }
+      ////////
+      this.setState({
+        chartData:initialChartData
+      })
+      console.log("updateStatefromApp")
+      console.log(initialChartData)
+    })
+  }
+
+  saveLine = () => {
       if (this.state.userData.compound === true) {
       this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       } else {
         this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       }
-    })
-  }
+    // let savedData = this.state.savedData.slice(0)
+    // let chartData = this.state.chartData.datasets[0].data.slice(0)
+    // let savedDataObject = {
+    //   label:'Money in £',
+    //   data:chartData,
+    //   backgroundColor:[
+    //     'rgba(54, 162, 235, 0.4)'
+    //   ]
+    // }
 
-  saveLine = () => {
-    let savedData = this.state.savedData.slice(0)
-    let chartData = this.state.chartData.datasets[0].data.slice(0)
-    let savedDataObject = {
-      label:'Money in £',
-      data:chartData,
-      backgroundColor:[
-        'rgba(54, 162, 235, 0.4)'
-      ]
-    }
-    savedData.push(savedDataObject)
-    this.setState({
-      savedData: savedData,
-      numberOfLines: this.state.numberOfLines + 1
-    })
+    // /////
+    // // savedData.push(savedDataObject)
+    // // this.setState({
+    // //   savedData: savedData,
+    // //   numberOfLines: this.state.numberOfLines + 1
+    // // })
+    // /////
+
+
+    // initialChartData.datasets.push(savedDataObject)
+    // console.log("saveLine")
+    // console.log(initialChartData)
+    // this.setState((prevState) => ({
+    //   chartData: {}
+    // }), () => {
+    //   this.setState({
+    //     chartData:initialChartData
+    //   })
+    // })
   }
 
   displayAllDataSets = () => {
-    // this.setState({
-    //   chartData:{}
-    // })
     var newDataSet = {
       label:'Money in £',
       data:[5000, 6000, 7000, 8000, 12000, 18000],
@@ -115,13 +160,7 @@ class App extends Component {
         'rgba(54, 162, 235, 0.4)'
       ]
     }
-/////
-
-    // data.datasets.push(newDataSet)
     initialChartData.datasets.push(newDataSet)
-
-    console.log(data)
-
     this.setState((prevState) => ({
       chartData: {}
     }), () => {
@@ -129,26 +168,6 @@ class App extends Component {
         chartData:initialChartData
       })
     })
-
-
-
-
-
-    //////
-
-    // console.log(data)
-    // data.datasets.push(newDataSet)
-    // console.log(data)
-
-    // // this.forceUpdate()
-    // // let datasets = this.state.chartData.datasets
-    // // datasets.push(newDataSet)
-    // // console.log(datasets)
-  
-    // this.setState({
-    //   chartData:data
-    // })
-
   }
 
   render(){
