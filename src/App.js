@@ -102,46 +102,21 @@ class App extends Component {
   }
 
   removeLine = () => {
-
-    // let lineColour = colours[this.state.numberOfLines % 6]
-    // console.log(lineColour)
-
-    // let savedDataObject = {
-    //   label:'Money in £',
-    //   data: yAxis,
-    //   fill: false,
-    //   borderColor: lineColour
-    // }
-    
     if (this.state.numberOfLines > 0) {
       initialChartData.datasets.pop()
-    }
+    
 
-    let data = JSON.parse(JSON.stringify(initialChartData))
+      let data = JSON.parse(JSON.stringify(initialChartData))
 
-    this.setState((prevState) => ({
-      chartData: {}
-    }), () => {
-      this.setState({
-        chartData: data,
-        numberOfLines: this.state.numberOfLines - 1
+      this.setState((prevState) => ({
+        chartData: {}
+      }), () => {
+        this.setState({
+          chartData: data,
+          numberOfLines: this.state.numberOfLines - 1
+        })
       })
-    })
-    // var newDataSet = {
-    //   label:'Money in £',
-    //   data:[5000, 6000, 7000, 8000, 12000, 18000],
-    //   backgroundColor:[
-    //     'rgba(54, 162, 235, 0.4)'
-    //   ]
-    // }
-    // initialChartData.datasets.push(newDataSet)
-    // this.setState((prevState) => ({
-    //   chartData: {}
-    // }), () => {
-    //   this.setState({
-    //     chartData:initialChartData
-    //   })
-    // })
+    }
   }
 
   render(){
