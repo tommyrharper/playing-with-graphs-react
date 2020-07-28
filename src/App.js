@@ -74,8 +74,15 @@ class App extends Component {
 
   saveLine = () => {
     let savedData = this.state.savedData.slice(0)
-    let chartData = Object.assign({}, this.state.chartData.datasets[0])
-    savedData.push(chartData)
+    let chartData = this.state.chartData.datasets[0].data.slice(0)
+    let savedDataObject = {
+      label:'Money in £',
+      data:chartData,
+      backgroundColor:[
+        'rgba(54, 162, 235, 0.4)'
+      ]
+    }
+    savedData.push(savedDataObject)
     this.setState({
       savedData: savedData,
       numberOfLines: this.state.numberOfLines + 1
@@ -89,11 +96,6 @@ class App extends Component {
     //     datasets:this.state.savedData
     //   }
     // }))
-    alert(initialChartData.datasets[0].data)
-    this.setState({
-      hell: "asfasdf",
-      chartData: initialChartData
-    })
   }
 
   render(){
