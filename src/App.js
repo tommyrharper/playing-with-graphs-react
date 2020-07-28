@@ -28,8 +28,8 @@ class App extends Component {
         years: 5,
         compound: true
       },
-      // chartData: JSON.parse(JSON.stringify(initialChartData)),
-      chartData: JSON.parse(JSON.stringify(data)),
+      chartData: JSON.parse(JSON.stringify(initialChartData)),
+      // chartData: JSON.parse(JSON.stringify(data)),
       savedData: [],
       numberOfLines: 0
     };
@@ -117,14 +117,16 @@ class App extends Component {
     }
 /////
 
-    data.datasets.push(newDataSet)
+    // data.datasets.push(newDataSet)
+    initialChartData.datasets.push(newDataSet)
+
     console.log(data)
 
     this.setState((prevState) => ({
       chartData: {}
     }), () => {
       this.setState({
-        chartData:data
+        chartData:initialChartData
       })
     })
 
