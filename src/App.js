@@ -53,8 +53,7 @@ class App extends Component {
       ]
     }
     
-    if (xAxis.length > initialChartData.labels.length ||
-      this.state.numberOfLines === 0) {
+    if (xAxis.length > initialChartData.labels.length) {
       initialChartData.labels = xAxis
     }
     initialChartData.datasets.push(savedDataObject)
@@ -65,7 +64,7 @@ class App extends Component {
       chartData: {}
     }), () => {
       this.setState({
-        chartData:data,
+        chartData: data,
         numberOfLines: this.state.numberOfLines + 1
       })
     })
