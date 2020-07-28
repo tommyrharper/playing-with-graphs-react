@@ -99,7 +99,7 @@ class App extends Component {
         ...prevState.userData,
         [key]: value
       },
-      // chartData: {}
+      chartData: {}
     }), () => {
       // if (this.state.userData.compound === true) {
       // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
@@ -108,7 +108,7 @@ class App extends Component {
       // }
       ////////
       this.setState({
-        chartData:initialChartData
+        chartData:chartdata
       })
       console.log("updateStatefromApp")
       console.log(initialChartData)
