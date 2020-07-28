@@ -61,9 +61,6 @@ class App extends Component {
 
     let data = JSON.parse(JSON.stringify(initialChartData))
 
-    console.log("updateChartData")
-    console.log(initialChartData.datasets)
-
     this.setState((prevState) => ({
       chartData: {}
     }), () => {
@@ -86,28 +83,6 @@ class App extends Component {
       chartData: chartdata
     }))
 
-
-    
-
-    // this.setState((prevState) => ({
-    //   userData:{
-    //     ...prevState.userData,
-    //     [key]: value
-    //   },
-    //   chartData: chartdata
-    // }), () => {
-    //   // if (this.state.userData.compound === true) {
-    //   // this.generateCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-    //   // } else {
-    //   //   this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
-    //   // }
-    //   ////////
-    //   // this.setState({
-    //   //   chartData:chartdata
-    //   // })
-    //   console.log("updateStatefromApp")
-    //   console.log(initialChartData)
-    // })
   }
 
   saveLine = () => {
@@ -116,35 +91,6 @@ class App extends Component {
       } else {
         this.generateNonCompoundChartData(this.state.userData.initialInvestment, this.state.userData.interestRate, this.state.userData.years)
       }
-    // let savedData = this.state.savedData.slice(0)
-    // let chartData = this.state.chartData.datasets[0].data.slice(0)
-    // let savedDataObject = {
-    //   label:'Money in £',
-    //   data:chartData,
-    //   backgroundColor:[
-    //     'rgba(54, 162, 235, 0.4)'
-    //   ]
-    // }
-
-    // /////
-    // // savedData.push(savedDataObject)
-    // // this.setState({
-    // //   savedData: savedData,
-    // //   numberOfLines: this.state.numberOfLines + 1
-    // // })
-    // /////
-
-
-    // initialChartData.datasets.push(savedDataObject)
-    // console.log("saveLine")
-    // console.log(initialChartData)
-    // this.setState((prevState) => ({
-    //   chartData: {}
-    // }), () => {
-    //   this.setState({
-    //     chartData:initialChartData
-    //   })
-    // })
   }
 
   displayAllDataSets = () => {
