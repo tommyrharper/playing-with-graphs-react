@@ -47,13 +47,15 @@ class App extends Component {
 
     let savedDataObject = {
       label:'Money in £',
-      data:yAxis,
+      data: yAxis,
       backgroundColor:[
         'rgba(54, 162, 235, 0.4)'
       ]
     }
     
-    initialChartData.labels = xAxis
+    if (xAxis.length > initialChartData.labels.length) {
+      initialChartData.labels = xAxis
+    }
     initialChartData.datasets.push(savedDataObject)
 
     let data = JSON.parse(JSON.stringify(initialChartData))
@@ -68,25 +70,12 @@ class App extends Component {
         chartData:data
       })
     })
-
-    ///////
-    // this.setState(prevState => ({
-    //   chartData:{
-    //     labels: xAxis,
-    //     datasets:[
-    //         {
-    //           ...prevState.chartData.datasets[0],
-    //           data: yAxis
-    //         }
-    //     ]
-    //   }
-    // }))
   }
 
   updateAppStateFromFormComponent = (key, value) => {
 
     let chartdata = JSON.parse(JSON.stringify(initialChartData))
-    
+
     this.setState((prevState) => ({
       userData:{
         ...prevState.userData,
