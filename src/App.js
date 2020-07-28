@@ -23,8 +23,8 @@ class App extends Component {
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
-    var i;
-    for (i = 1; i < years + 1; i++) {
+    // var i;
+    for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       arrayMoney.push(arrayMoney[arrayMoney.length - 1]*interestRate)
     }
