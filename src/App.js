@@ -18,9 +18,9 @@ class App extends Component {
     super(props)
     this.state = {
       userData:{
-        initialInvestment: 10_000,
-        interestRate: 1.1,
-        years: 5,
+        initialInvestment: 1000,
+        interestRate: 1.08,
+        years: 20,
         compound: true,
         monthlyContribution: 500
       },
