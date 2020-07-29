@@ -18,9 +18,9 @@ class App extends Component {
     super(props)
     this.state = {
       userData:{
-        initialInvestment: 10_000,
-        interestRate: 1.1,
-        years: 5,
+        initialInvestment: 1000,
+        interestRate: 1.08,
+        years: 20,
         compound: true,
         monthlyContribution: 500
       },
@@ -46,13 +46,21 @@ class App extends Component {
   generateNonCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
-    let yearlyGrowth = initialInvestment * (interestRate - 1)
     let total = initialInvestment
+
+    let yearlyContribution = this.state.userData.monthlyContribution * 12
+    let thisYearsInterest = 0
+    let totalInterest = 0
+    let totalGain = 0
+    
     for (var i = 1; i < years + 1; i++) {
+      thisYearsInterest =  (arrayMoney[arrayMoney.length-1]-totalInterest) * (interestRate - 1)
+      totalInterest += thisYearsInterest
+      totalGain = yearlyContribution + thisYearsInterest
+      total += totalGain
+
       arrayYears.push(2020+i)
-      // total += this.state.userData.monthlyContribution * 12
-      arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
-      // arrayMoney.push(total.toFixed(2))
+      arrayMoney.push(total.toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
   }
@@ -140,10 +148,11 @@ class App extends Component {
   render(){
     return (
       <>
-      <button onClick={this.removeLine}>Remove Line</button>
+      <h1>Financial Future Visualiser</h1>
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
+        removeLine={this.removeLine}
       />
       <div className="App">
         <Chart

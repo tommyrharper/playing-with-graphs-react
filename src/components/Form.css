@@ -1,0 +1,43 @@
+input {
+  margin: 5px;
+}
+
+.button {
+  color: rgb(246, 246, 246);
+  background-color: rgb(36, 152, 230);
+  border-color: rgb(36, 152, 230);
+  cursor: pointer;
+  font-size:16px;
+  font-weight: 400;
+  max-width: 160px; 
+  width: 100%; 
+}
+
+#form-grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+#sect-1 {
+  text-align: center;
+  grid-column-start: 2;
+  grid-row-start: 1;
+}
+
+#sect-2 {
+  text-align: center;
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+#sect-3 {
+  text-align: center;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+#sect-4 {
+  text-align: center;
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
