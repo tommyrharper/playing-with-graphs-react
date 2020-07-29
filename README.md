@@ -1,5 +1,11 @@
 # Playing with Graphs in React
 
+This project morphed into a full blown financial future visualisation application.
+
+Try it out here at [http://financial-future-visualiser.surge.sh/](http://financial-future-visualiser.surge.sh/).
+
+# Other info
+
 Using [react-chartjs-2](https://github.com/jerairrest/react-chartjs-2)
 
 First I used:
