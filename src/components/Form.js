@@ -6,9 +6,9 @@ class ReactForm extends React.Component {
     super(props);
     this.state = {
       compound: true,
-      years: 5,
-      initialInvestment: 10000,
-      interestRate: 1.1,
+      years: 20,
+      initialInvestment: 1000,
+      interestRate: 1.08,
       monthlyContribution: 500
     }
 
