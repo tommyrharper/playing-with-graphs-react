@@ -1,11 +1,14 @@
 html, body {
   /* color: rgb(49, 49, 49); */
   font-family: Helvetica;
+  background-color: rgb(251, 251, 251);
 
 }
 
 h1 {
   text-align: center;
+  color: rgb(36, 152, 230);
+  text-shadow: 1px 1px rgb(49, 49, 49);
 }
 
 
