@@ -93,9 +93,9 @@ class ReactForm extends React.Component {
           </div>
           {/* <br/> */}
           <div id="sect-4">
-            <input type="submit" value="Add Line"/>
+            <input class="button" type="submit" value="Add Line"/>
             <br/>
-            <button type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
+            <button class="button" type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
           </div>
         </div>
       </form>
