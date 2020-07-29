@@ -21,7 +21,8 @@ class App extends Component {
         initialInvestment: 10_000,
         interestRate: 1.1,
         years: 5,
-        compound: true
+        compound: true,
+        monthlyContribution: 500
       },
       chartData: JSON.parse(JSON.stringify(initialChartData)),
       savedData: [],
@@ -32,9 +33,12 @@ class App extends Component {
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
+    let total = initialInvestment
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      arrayMoney.push((arrayMoney[arrayMoney.length - 1]*interestRate).toFixed(2))
+      total += this.state.userData.monthlyContribution * 12
+      total = total * interestRate
+      arrayMoney.push(total.toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
   }
@@ -43,9 +47,12 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let yearlyGrowth = initialInvestment * (interestRate - 1)
+    let total = initialInvestment
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
+      // total += this.state.userData.monthlyContribution * 12
       arrayMoney.push(arrayMoney[arrayMoney.length - 1] + yearlyGrowth)
+      // arrayMoney.push(total.toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
   }
