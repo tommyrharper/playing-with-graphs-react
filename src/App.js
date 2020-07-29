@@ -62,6 +62,7 @@ class App extends Component {
       arrayYears.push(2020+i)
       arrayMoney.push(total.toFixed(2))
     }
+    this.updateChartData(arrayYears, arrayMoney)
   }
 
   updateChartData = (xAxis, yAxis) => {
