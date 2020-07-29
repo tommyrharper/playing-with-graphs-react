@@ -140,7 +140,6 @@ class App extends Component {
   render(){
     return (
       <>
-      <button onClick={this.removeLine}>Remove Line</button>
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
