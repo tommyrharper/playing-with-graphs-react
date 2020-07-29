@@ -13,3 +13,15 @@ npm install --save react-chartjs-2 chart.js
 ```
 
 Then I created ```./src/components/Chart.js```.
+
+
+## Deploying to surge
+
+I did the following steps to deploy to surge:
+
+```
+npm run build
+cd build
+cp index.html 200.html
+surge
+```
