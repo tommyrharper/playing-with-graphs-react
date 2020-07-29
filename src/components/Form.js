@@ -1,4 +1,5 @@
 import React from 'react'
+import './Form.css';
 
 class ReactForm extends React.Component {
   constructor(props) {
@@ -34,57 +35,71 @@ class ReactForm extends React.Component {
   render() {
     return(
       <>
+      
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Compound:
-          <input 
-          name="compound"
-          type="checkbox" 
-          checked={this.state.compound}
-          onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
-          Interest rate:
-          <input 
-          name="interestRate"
-          type="number" 
-          step="0.01"
-          value={this.state.interestRate}
-          onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
-          Number of Years:
-          <input
-          name="years"
-          type="number"
-          value={this.state.years}
-          onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
-          Initial Investment:
-          <input
-          name="initialInvestment"
-          type="number"
-          step="1000"
-          value={this.state.initialInvestment}
-          onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
-          Monthly Contribution:
-          <input
-          name="monthlyContribution"
-          type="number"
-          step="100"
-          value={this.state.monthlyContribution}
-          onChange={this.handleInputChange} />
-        </label>
-        <input type="submit" value="Add Line"/>
-        <button type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
+        <div id="form-grid">
+          <div id="sect-1">
+            <label>
+              Compound:
+              <input 
+              name="compound"
+              type="checkbox" 
+              checked={this.state.compound}
+              onChange={this.handleInputChange} />
+            </label>
+          </div>
+          {/* <br/> */}
+          <div id="sect-2">
+            <label>
+              Interest rate:
+              <input 
+              name="interestRate"
+              type="number" 
+              step="0.01"
+              value={this.state.interestRate}
+              onChange={this.handleInputChange} />
+            </label>
+            <br/>
+            <label>
+              Number of Years:
+              <input
+              name="years"
+              type="number"
+              value={this.state.years}
+              onChange={this.handleInputChange} />
+            </label>
+          </div>
+          <div id="sect-3">
+          {/* <br/> */}
+            <label>
+              Initial Investment:
+              <input
+              name="initialInvestment"
+              type="number"
+              step="1000"
+              value={this.state.initialInvestment}
+              onChange={this.handleInputChange} />
+            </label>
+            <br/>
+            <label>
+              Monthly Contribution:
+              <input
+              name="monthlyContribution"
+              type="number"
+              step="100"
+              value={this.state.monthlyContribution}
+              onChange={this.handleInputChange} />
+            </label>
+          </div>
+          {/* <br/> */}
+          <div id="sect-4">
+            <input type="submit" value="Add Line"/>
+            <br/>
+            <button type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
+          </div>
+        </div>
       </form>
+      
       </>
     )
   }
