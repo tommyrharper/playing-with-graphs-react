@@ -7,7 +7,8 @@ class ReactForm extends React.Component {
       compound: true,
       years: 5,
       initialInvestment: 10000,
-      interestRate: 1.1
+      interestRate: 1.1,
+      monthlyContribution: 500
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -68,7 +69,18 @@ class ReactForm extends React.Component {
           <input
           name="initialInvestment"
           type="number"
+          step="1000"
           value={this.state.initialInvestment}
+          onChange={this.handleInputChange} />
+        </label>
+        <br/>
+        <label>
+          Monthly Contribution:
+          <input
+          name="monthlyContribution"
+          type="number"
+          step="100"
+          value={this.state.monthlyContribution}
           onChange={this.handleInputChange} />
         </label>
         <input type="submit" value="Add Line"/>
