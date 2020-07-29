@@ -144,6 +144,7 @@ class App extends Component {
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
+        removeLine={this.removeLine}
       />
       <div className="App">
         <Chart
