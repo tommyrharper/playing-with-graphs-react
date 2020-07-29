@@ -28,7 +28,7 @@ class Chart extends Component {
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Investment potential',
+              // text:'Investment potential',
               fontSize:25
             },
             legend:{
