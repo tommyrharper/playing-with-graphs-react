@@ -1,0 +1,14 @@
+html, body {
+  color: rgb(49, 49, 49);
+  font-family: Helvetica;
+
+}
+
+body {
+  width: 90%;
+}
+
+
+body > span {
+  vertical-align: middle;
+}
