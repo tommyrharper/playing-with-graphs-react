@@ -17,7 +17,6 @@ class ReactForm extends React.Component {
 
   handleInputChange(event) {
     const target = event.target
-    // const value = target.name === 'compound' ? target.checked : parseInt(target.value);
     const value = target.name === 'compound' ? target.checked : parseFloat(target.value);
     const key = target.name;
 
@@ -32,9 +31,9 @@ class ReactForm extends React.Component {
     this.props.addLine()
   }
 
-
   render() {
     return(
+      <>
       <form onSubmit={this.handleSubmit}>
         <label>
           Compound:
@@ -84,7 +83,9 @@ class ReactForm extends React.Component {
           onChange={this.handleInputChange} />
         </label>
         <input type="submit" value="Add Line"/>
+        <button type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
       </form>
+      </>
     )
   }
 }
