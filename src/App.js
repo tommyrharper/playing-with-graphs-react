@@ -19,7 +19,7 @@ class App extends Component {
     this.state = {
       userData:{
         initialInvestment: 1000,
-        interestRate: 1.08,
+        interestRate: 8,
         years: 20,
         compound: true,
         monthlyContribution: 500
@@ -31,13 +31,14 @@ class App extends Component {
   }
 
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
+
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
       total += this.state.userData.monthlyContribution * 12
-      total = total * interestRate
+      total = total * ((interestRate / 100) + 1)
       arrayMoney.push(total.toFixed(2))
     }
     this.updateChartData(arrayYears, arrayMoney)
@@ -54,7 +55,7 @@ class App extends Component {
     let totalGain = 0
     
     for (var i = 1; i < years + 1; i++) {
-      thisYearsInterest =  (arrayMoney[arrayMoney.length-1]-totalInterest) * (interestRate - 1)
+      thisYearsInterest =  (arrayMoney[arrayMoney.length-1]-totalInterest) * (interestRate / 100)
       totalInterest += thisYearsInterest
       totalGain = yearlyContribution + thisYearsInterest
       total += totalGain
@@ -77,7 +78,8 @@ class App extends Component {
 
     let lineColour = colours[this.state.numberOfLines % 6]
     let label = ` Start: £${this.state.userData.initialInvestment}
-    Interest: ${parseInt((this.state.userData.interestRate-1)*100)}%
+    Monthly: £${this.state.userData.monthlyContribution}
+    Interest: ${parseInt(this.state.userData.interestRate)}%
     Years: ${this.state.userData.years}
     Compounded: ${compound}
     End: £${finalAmount}`

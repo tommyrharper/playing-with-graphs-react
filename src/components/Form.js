@@ -8,7 +8,7 @@ class ReactForm extends React.Component {
       compound: true,
       years: 20,
       initialInvestment: 1000,
-      interestRate: 1.08,
+      interestRate: 8,
       monthlyContribution: 500
     }
 
@@ -51,11 +51,11 @@ class ReactForm extends React.Component {
           {/* <br/> */}
           <div id="sect-2">
             <label>
-              Interest rate:
+              Interest rate %:
               <input 
               name="interestRate"
               type="number" 
-              step="0.01"
+              step="0.5"
               value={this.state.interestRate}
               onChange={this.handleInputChange} />
             </label>
