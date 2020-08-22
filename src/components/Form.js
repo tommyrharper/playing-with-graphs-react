@@ -9,7 +9,8 @@ class ReactForm extends React.Component {
       years: 20,
       initialInvestment: 1000,
       interestRate: 8,
-      monthlyContribution: 500
+      monthlyContribution: 500,
+      annualIncrease: 0
     }
 
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -48,7 +49,6 @@ class ReactForm extends React.Component {
               onChange={this.handleInputChange} />
             </label>
           </div>
-          {/* <br/> */}
           <div id="sect-2">
             <label>
               Interest Rate %:
@@ -70,7 +70,6 @@ class ReactForm extends React.Component {
             </label>
           </div>
           <div id="sect-3">
-          {/* <br/> */}
             <label>
               Initial Investment:
               <input
@@ -91,11 +90,21 @@ class ReactForm extends React.Component {
               onChange={this.handleInputChange} />
             </label>
           </div>
-          {/* <br/> */}
           <div id="sect-4">
-            <input class="button" type="submit" value="Add Line"/>
+            <input className="button" type="submit" value="Add Line"/>
             <br/>
-            <button class="button" type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
+            <button className="button" type="button" onClick={(e) => this.props.removeLine()}>Remove Line</button>
+          </div>
+          <div id="sect-5">
+            <label>
+              Monthly Contribution Increase PA:
+              <input
+              name="annualIncrease"
+              type="number"
+              step="100"
+              value={this.state.annualIncrease}
+              onChange={this.handleInputChange} />
+            </label>
           </div>
         </div>
       </form>
