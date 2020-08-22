@@ -22,7 +22,8 @@ class App extends Component {
         interestRate: 8,
         years: 20,
         compound: true,
-        monthlyContribution: 500
+        monthlyContribution: 500,
+        annualIncrease: 0
       },
       chartData: JSON.parse(JSON.stringify(initialChartData)),
       savedData: [],
@@ -79,6 +80,7 @@ class App extends Component {
     let lineColour = colours[this.state.numberOfLines % 6]
     let label = ` Start: £${this.state.userData.initialInvestment}
     Monthly: £${this.state.userData.monthlyContribution}
+    PM Increase PA: £${this.state.userData.annualIncrease}
     Interest: ${parseInt(this.state.userData.interestRate)}%
     Years: ${this.state.userData.years}
     Compounded: ${compound}
