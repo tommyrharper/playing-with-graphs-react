@@ -55,7 +55,7 @@ class ReactForm extends React.Component {
               <input 
               name="interestRate"
               type="number" 
-              step="0.01"
+              step="0.5"
               value={this.state.interestRate}
               onChange={this.handleInputChange} />
             </label>
