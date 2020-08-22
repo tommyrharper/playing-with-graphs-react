@@ -88,7 +88,7 @@ class App extends Component {
     Interest: ${parseInt(this.state.userData.interestRate)}%
     Years: ${this.state.userData.years}
     Compounded: ${compound}
-    End: £${finalAmount}`
+    End: £${this.numberWithCommas(finalAmount)}`
 
     let savedDataObject = {
       label:label,
@@ -153,10 +153,14 @@ class App extends Component {
     }
   }
 
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
   render(){
     return (
       <>
-      <h1>How Rich Will I Be?</h1>
+      <h1>Investment Calculator</h1>
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
