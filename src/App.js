@@ -156,7 +156,7 @@ class App extends Component {
   render(){
     return (
       <>
-      <h1>How Rich Will You Be?</h1>
+      <h1>How Rich Will I Be?</h1>
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
