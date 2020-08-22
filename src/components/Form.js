@@ -51,7 +51,7 @@ class ReactForm extends React.Component {
           {/* <br/> */}
           <div id="sect-2">
             <label>
-              Interest rate:
+              Interest rate %:
               <input 
               name="interestRate"
               type="number" 
