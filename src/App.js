@@ -88,7 +88,7 @@ class App extends Component {
     Interest: ${parseInt(this.state.userData.interestRate)}%
     Years: ${this.state.userData.years}
     Compounded: ${compound}
-    End: £${finalAmount}`
+    End: £${this.numberWithCommas(finalAmount)}`
 
     let savedDataObject = {
       label:label,
@@ -151,6 +151,10 @@ class App extends Component {
         })
       })
     }
+  }
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   render(){
