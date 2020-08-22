@@ -36,9 +36,11 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
+    let annualIncrease = this.state.userData.annualIncrease
+    let monthlyContribution = this.state.userData.monthlyContribution
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      total += this.state.userData.monthlyContribution * 12
+      total += (monthlyContribution + (annualIncrease * (i-1)))* 12
       total = total * ((interestRate / 100) + 1)
       arrayMoney.push(total.toFixed(2))
     }
