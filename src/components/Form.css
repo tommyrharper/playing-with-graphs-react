@@ -41,3 +41,10 @@ input {
   grid-column-start: 3;
   grid-row-start: 2;
 }
+
+#sect-5 {
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+}

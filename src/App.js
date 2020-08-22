@@ -22,7 +22,8 @@ class App extends Component {
         interestRate: 8,
         years: 20,
         compound: true,
-        monthlyContribution: 500
+        monthlyContribution: 500,
+        annualIncrease: 0
       },
       chartData: JSON.parse(JSON.stringify(initialChartData)),
       savedData: [],
@@ -35,9 +36,11 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
+    let annualIncrease = this.state.userData.annualIncrease
+    let monthlyContribution = this.state.userData.monthlyContribution
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      total += this.state.userData.monthlyContribution * 12
+      total += (monthlyContribution + (annualIncrease * (i-1))) * 12
       total = total * ((interestRate / 100) + 1)
       arrayMoney.push(total.toFixed(2))
     }
@@ -48,8 +51,10 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
+    let annualIncrease = this.state.userData.annualIncrease
+    let monthlyContribution = this.state.userData.monthlyContribution
 
-    let yearlyContribution = this.state.userData.monthlyContribution * 12
+    let yearlyContribution = monthlyContribution * 12
     let thisYearsInterest = 0
     let totalInterest = 0
     let totalGain = 0
@@ -57,7 +62,7 @@ class App extends Component {
     for (var i = 1; i < years + 1; i++) {
       thisYearsInterest =  (arrayMoney[arrayMoney.length-1]-totalInterest) * (interestRate / 100)
       totalInterest += thisYearsInterest
-      totalGain = yearlyContribution + thisYearsInterest
+      totalGain = yearlyContribution + ((annualIncrease * (i-1)) * 12) + thisYearsInterest
       total += totalGain
 
       arrayYears.push(2020+i)
@@ -79,6 +84,7 @@ class App extends Component {
     let lineColour = colours[this.state.numberOfLines % 6]
     let label = ` Start: £${this.state.userData.initialInvestment}
     Monthly: £${this.state.userData.monthlyContribution}
+    PM Increase PA: £${this.state.userData.annualIncrease}
     Interest: ${parseInt(this.state.userData.interestRate)}%
     Years: ${this.state.userData.years}
     Compounded: ${compound}
@@ -150,7 +156,7 @@ class App extends Component {
   render(){
     return (
       <>
-      <h1>Financial Future Visualiser</h1>
+      <h1>How Rich Will I Be?</h1>
       <ReactForm
         addLine={this.addLine}
         updateAppState={this.updateAppStateFromFormComponent}
