@@ -40,7 +40,7 @@ class App extends Component {
     let monthlyContribution = this.state.userData.monthlyContribution
     for (var i = 1; i < years + 1; i++) {
       arrayYears.push(2020+i)
-      total += (monthlyContribution + (annualIncrease * (i-1)))* 12
+      total += (monthlyContribution + (annualIncrease * (i-1))) * 12
       total = total * ((interestRate / 100) + 1)
       arrayMoney.push(total.toFixed(2))
     }
@@ -51,8 +51,10 @@ class App extends Component {
     let arrayYears = [2020]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
+    let annualIncrease = this.state.userData.annualIncrease
+    let monthlyContribution = this.state.userData.monthlyContribution
 
-    let yearlyContribution = this.state.userData.monthlyContribution * 12
+    let yearlyContribution = monthlyContribution * 12
     let thisYearsInterest = 0
     let totalInterest = 0
     let totalGain = 0
@@ -60,7 +62,7 @@ class App extends Component {
     for (var i = 1; i < years + 1; i++) {
       thisYearsInterest =  (arrayMoney[arrayMoney.length-1]-totalInterest) * (interestRate / 100)
       totalInterest += thisYearsInterest
-      totalGain = yearlyContribution + thisYearsInterest
+      totalGain = yearlyContribution + ((annualIncrease * (i-1)) * 12) + thisYearsInterest
       total += totalGain
 
       arrayYears.push(2020+i)
