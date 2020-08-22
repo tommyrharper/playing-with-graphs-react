@@ -8,7 +8,7 @@ class ReactForm extends React.Component {
       compound: true,
       years: 20,
       initialInvestment: 1000,
-      interestRate: 1.08,
+      interestRate: 8,
       monthlyContribution: 500
     }
 
