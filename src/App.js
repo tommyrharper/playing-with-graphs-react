@@ -32,8 +32,7 @@ class App extends Component {
   }
 
   generateCompoundChartData = (initialInvestment, interestRate, years) => {
-
-    let arrayYears = [2020]
+    let arrayYears = [new Date().getFullYear()];
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
     let annualIncrease = this.state.userData.annualIncrease
@@ -48,7 +47,7 @@ class App extends Component {
   }
 
   generateNonCompoundChartData = (initialInvestment, interestRate, years) => {
-    let arrayYears = [2020]
+    let arrayYears = [new Date().getFullYear()]
     let arrayMoney = [initialInvestment]
     let total = initialInvestment
     let annualIncrease = this.state.userData.annualIncrease
