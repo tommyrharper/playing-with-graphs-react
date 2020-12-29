@@ -2,7 +2,7 @@
 
 This project morphed into a full blown financial future visualisation application.
 
-Try it out here at [http://financial-future-visualiser.surge.sh/](http://financial-future-visualiser.surge.sh/).
+Try it out here at [http://howrichwillibe.surge.sh/](http://howrichwillibe.surge.sh/).
 
 # Other info
 
